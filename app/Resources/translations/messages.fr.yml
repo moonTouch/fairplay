@@ -1,0 +1,10 @@
+submit : "Envoyer"
+contact:
+    username:
+        label: "Votre message"
+    email:
+        label: "Email"
+    message:
+        label: "Message"
+    header:
+        label : "Formulaire de contact"

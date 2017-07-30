@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Articles{% endblock %}
+
+{% block body %}
+    <div class="row">
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+
+            <h1 class="page-header"> Liste de tous les articles <small>{{ pagination.getTotalItemCount }} articles</small></h1>
+
+            {# Articles loop #}
+            {% for article in pagination  if pagination %}
+                <h2>
+                    <a href="{{ path('article_show', { 'id': article.id }) }}">{{ article.title }}</a>
+                </h2>
+                <p class="lead">
+                    par {{ article.user.username }}
+                </p>
+                <p><span class="glyphicon glyphicon-time"></span> Posté le {{ article.createdAt|date('d-m-Y à H:i:s') }} </p>
+
+                <p>{{ article.content }}</p>
+                <a class="btn btn-primary" href="{{ path('article_show', { 'id': article.id }) }}">En savoir +<span class="glyphicon glyphicon-chevron-right"></span></a>
+
+                <hr>
+            {% else %}
+
+                {# If no article registered : show an info message #}
+                <div class="alert alert-info">Ooops ! Il n'y a pas encore d'articles sur ce blog. Soyez le premier ! </div>
+
+            {% endfor %}
+            {# / articles loop end #}
+
+            {# Pagination #}
+            <div class="navigation">
+                {{ knp_pagination_render(pagination) }}
+            </div>
+
+        </div>
+
+        <!-- Blog Sidebar Widgets Column -->
+        <div class="col-md-4">
+
+            {% include ("default/sidebar.html.twig") %}
+
+        </div>
+
+    </div>
+    <!-- /.row -->
+{% endblock %}

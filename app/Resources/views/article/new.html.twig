@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article new{% endblock %}
+
+{% block body %}
+
+    <h1>Ajouter un article</h1>
+
+    {{ form_start(form) }}
+
+        {{ form_widget(form) }}
+        <input type="submit" class="btn btn-info" value="Valider" />
+
+    {{ form_end(form) }}
+
+{% endblock %}
